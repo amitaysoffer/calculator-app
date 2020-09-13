@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0; 
+  box-sizing: border-box;
+}
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+  font-size: 30px;
+}
+
+#grid-container {
+  width: 500px;
+  height: 500px;
+  border: 2px solid #000; 
+  display: grid;
+  grid-template-rows: 1fr 5fr ;
+  grid-template-columns: 3fr 1fr;
+  margin: 50px auto;
+  background: lightgrey;
+  padding: 15px;
+  grid-gap: 0.5em;
+}
+
+/* Display */
+#display-container {
+  grid-column: 1/3;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  height: 100px;
+}
+
+#display-container #clear {
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  text-align: center;
+  width: 30%;
+  background: red;
+  outline: none;
+  cursor: pointer;
+  font-size: 30px;
+}
+
+#display-container div#display-digits {
+  width: 70%;
+    background: aliceblue;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+#display-container p#process {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Numbers */
+#numbers-container {
+  border: 2px solid #000;
+  background: lightblue;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  text-align: center;
+  border-radius: 20px;
+  grid-gap: 0.2em;
+  padding: 5px;
+}
+
+#numbers-container > div {
+  border: 4px solid red;
+  display: flex;  
+  border-radius: 50%;
+  background: aliceblue;
+  cursor: pointer;
+}
+
+#numbers-container span {
+  margin: auto;
+}
+
+#numbers-container div:hover {
+  background: salmon;
+}
+
+/* Operations */
+#operation-container {
+  border: 2px solid #000;
+  background: lightcoral;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  border-radius: 20px;
+  grid-gap: 0.2em;
+  padding: 3px;
+}
+
+#operation-container > div {
+  border: 4px solid red;
+  display: flex;  
+  border-radius: 50%;
+  background: aliceblue;
+  cursor: pointer;
+}
+
+#operation-container span {
+  margin: auto;
+}
+
+#operation-container div:hover {
+  background: lime;
+}

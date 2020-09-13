@@ -1,0 +1,85 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Calculator</title>
+</head>
+
+<body>
+  <div id="grid-container">
+
+    <!-- Display Section -->
+    <section id="display-container">
+      <button id="clear">C</button>
+      <div id="display-digits" type="text">
+        <p id="process"></p>
+        <p id="answer"></p>
+      </div>
+    </section>
+
+    <!-- Numbers Section -->
+    <section id="numbers-container">
+      <div data-value="7" id="seven" class="number">
+        <span data-value="7">7</span>
+      </div>
+      <div data-value="8" class="number">
+        <span data-value="8" id="eight">8</span>
+      </div>
+      <div data-value="9" class="number">
+        <span data-value="9" id="nine">9</span>
+      </div>
+      <div data-value="4" class="number">
+        <span data-value="4">4</span>
+      </div>
+      <div data-value="5" class="number">
+        <span data-value="5">5</span>
+      </div>
+      <div data-value="6" class="number">
+        <span data-value="6">6</span>
+      </div>
+      <div data-value="1" class="number">
+        <span data-value="1">1</span>
+      </div>
+      <div data-value="2" class="number">
+        <span data-value="2">2</span>
+      </div>
+      <div data-value="3" class="number">
+        <span data-value="3">3</span>
+      </div>
+      <div data-value="0" class="number">
+        <span data-value="0">0</span>
+      </div>
+      <div>
+        <span>.</span>
+      </div>
+      <div id="equal">
+        <span>=</span>
+      </div>
+    </section>
+    <!-- Operation Section -->
+    <section id="operation-container">
+      <div id="divide" class="opretation">
+        <span>/</span>
+      </div>
+      <div data-value="*" id="minputtiply" class="opretation">
+        <span>X</span>
+      </div>
+      <div id="minus" class="opretation">
+        <span>-</span>
+      </div>
+      <div id="plus" class="opretation">
+        <span>+</span>
+      </div>
+
+
+    </section>
+  </div>
+
+
+
+  <script src="script.js"></script>
+</body>
+
+</html>
