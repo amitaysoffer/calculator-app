@@ -3,10 +3,11 @@ const divide = document.getElementById('divide')
 const multiply = document.getElementById('multiply')
 const minus = document.getElementById('minus')
 const plus = document.getElementById('plus')
-
-const displayDigits = document.getElementById('display-digits')
+const equal = document.getElementById('equal')
+const decimal = document.getElementById('decimal')
 const answer = document.getElementById('answer')
 const process = document.getElementById('process')
+const clearBtn = document.getElementById('clear-btn')
 
 let firstNumber;
 let secondNumber;
@@ -16,7 +17,6 @@ let checkSecondNumber = true;
 
 document.querySelectorAll('.number').forEach(item => {
   item.addEventListener('click', function (e) {
-
     let addNumber = e.target.getAttribute('data-value');
     // Checking first number
     if (checkSecondNumber) {
@@ -58,23 +58,23 @@ plus.addEventListener('click', function () {
 
     if (firstNumber) {
       if (operator === '+') {
-        tempAnswer = parseInt(firstNumber) + parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) + Number(secondNumber)
       } else if (operator === '-') {
-        tempAnswer = parseInt(firstNumber) - parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) - Number(secondNumber)
       } else if (operator === 'x') {
-        tempAnswer = parseInt(firstNumber) * parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) * Number(secondNumber)
       } else if (operator === '÷') {
-        tempAnswer = parseInt(firstNumber) / parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) / Number(secondNumber)
       }
     } else {
       if (operator === '+') {
-        tempAnswer = parseInt(tempAnswer) + parseInt(secondNumber)
+        tempAnswer = Number(tempAnswer) + Number(secondNumber)
       } else if (operator === '-') {
-        tempAnswer = parseInt(tempAnswer) - parseInt(secondNumber)
+        tempAnswer = Number(tempAnswer) - Number(secondNumber)
       } else if (operator === 'x') {
-        tempAnswer = parseInt(tempAnswer) * parseInt(secondNumber)
+        tempAnswer = Number(tempAnswer) * Number(secondNumber)
       } else if (operator === '÷') {
-        tempAnswer = parseInt(tempAnswer) / parseInt(secondNumber)
+        tempAnswer = Number(tempAnswer) / Number(secondNumber)
       }
     }
     answer.innerText = tempAnswer
@@ -99,23 +99,23 @@ minus.addEventListener('click', function () {
 
     if (firstNumber) {
       if (operator === '+') {
-        tempAnswer = parseInt(firstNumber) + parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) + Number(secondNumber)
       } else if (operator === '-') {
-        tempAnswer = parseInt(firstNumber) - parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) - Number(secondNumber)
       } else if (operator === 'x') {
-        tempAnswer = parseInt(firstNumber) * parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) * Number(secondNumber)
       } else if (operator === '÷') {
-        tempAnswer = parseInt(firstNumber) / parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) / Number(secondNumber)
       }
     } else {
       if (operator === '+') {
-        tempAnswer = tempAnswer + parseInt(secondNumber)
+        tempAnswer = tempAnswer + Number(secondNumber)
       } else if (operator === '-') {
-        tempAnswer = tempAnswer - parseInt(secondNumber)
+        tempAnswer = tempAnswer - Number(secondNumber)
       } else if (operator === 'x') {
-        tempAnswer = tempAnswer * parseInt(secondNumber)
+        tempAnswer = tempAnswer * Number(secondNumber)
       } else if (operator === '÷') {
-        tempAnswer = tempAnswer / parseInt(secondNumber)
+        tempAnswer = tempAnswer / Number(secondNumber)
       }
     }
     answer.innerText = tempAnswer
@@ -140,23 +140,23 @@ multiply.addEventListener('click', function () {
 
     if (firstNumber) {
       if (operator === '+') {
-        tempAnswer = parseInt(firstNumber) + parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) + Number(secondNumber)
       } else if (operator === '-') {
-        tempAnswer = parseInt(firstNumber) - parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) - Number(secondNumber)
       } else if (operator === 'x') {
-        tempAnswer = parseInt(firstNumber) * parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) * Number(secondNumber)
       } else if (operator === '÷') {
-        tempAnswer = parseInt(firstNumber) / parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) / Number(secondNumber)
       }
     } else {
       if (operator === '+') {
-        tempAnswer = tempAnswer + parseInt(secondNumber)
+        tempAnswer = tempAnswer + Number(secondNumber)
       } else if (operator === '-') {
-        tempAnswer = tempAnswer - parseInt(secondNumber)
+        tempAnswer = tempAnswer - Number(secondNumber)
       } else if (operator === 'x') {
-        tempAnswer = tempAnswer * parseInt(secondNumber)
+        tempAnswer = tempAnswer * Number(secondNumber)
       } else if (operator === '÷') {
-        tempAnswer = tempAnswer / parseInt(secondNumber)
+        tempAnswer = tempAnswer / Number(secondNumber)
       }
     }
     answer.innerText = tempAnswer
@@ -167,6 +167,7 @@ multiply.addEventListener('click', function () {
   }
 });
 
+// DIVIDE NUMBER EVENT
 divide.addEventListener('click', function () {
   // debugger;
   if (!secondNumber) {
@@ -180,23 +181,23 @@ divide.addEventListener('click', function () {
 
     if (firstNumber) {
       if (operator === '+') {
-        tempAnswer = parseInt(firstNumber) + parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) + Number(secondNumber)
       } else if (operator === '-') {
-        tempAnswer = parseInt(firstNumber) - parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) - Number(secondNumber)
       } else if (operator === 'x') {
-        tempAnswer = parseInt(firstNumber) * parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) * Number(secondNumber)
       } else if (operator === '÷') {
-        tempAnswer = parseInt(firstNumber) / parseInt(secondNumber)
+        tempAnswer = Number(firstNumber) / Number(secondNumber)
       }
     } else {
       if (operator === '+') {
-        tempAnswer = tempAnswer + parseInt(secondNumber)
+        tempAnswer = tempAnswer + Number(secondNumber)
       } else if (operator === '-') {
-        tempAnswer = tempAnswer - parseInt(secondNumber)
+        tempAnswer = tempAnswer - Number(secondNumber)
       } else if (operator === 'x') {
-        tempAnswer = tempAnswer * parseInt(secondNumber)
+        tempAnswer = tempAnswer * Number(secondNumber)
       } else if (operator === '÷') {
-        tempAnswer = tempAnswer / parseInt(secondNumber)
+        tempAnswer = tempAnswer / Number(secondNumber)
       }
     }
     answer.innerText = tempAnswer
@@ -207,15 +208,36 @@ divide.addEventListener('click', function () {
   }
 });
 
+// Add DECIMAL 
+decimal.addEventListener('click', function () {
+  // debugger;
+  if (firstNumber && !secondNumber) {
+    firstNumber += '.'
+    process.innerText = firstNumber
+  } else {
+    secondNumber += '.'
+    process.innerText += '.'
+  }
+});
 
+clearBtn.addEventListener('click', function (e) {
+  firstNumber = undefined;
+  secondNumber = undefined;
+  operator = ''
+  tempAnswer = 0;
+  checkSecondNumber = true;
+
+  process.innerText = '';
+  answer.innerText = '';
+})
 
 // ANSWER of equasion
-document.getElementById('equal').addEventListener('click', function (e) {
+equal.addEventListener('click', function (e) {
 
   // debugger;
 
-  let newNum1 = parseInt(firstNumber)
-  let newNum2 = parseInt(secondNumber)
+  let newNum1 = Number(firstNumber)
+  let newNum2 = Number(secondNumber)
 
   if (firstNumber) {
     if (operator === '+') {
