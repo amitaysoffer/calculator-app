@@ -2,7 +2,7 @@
 const divide = document.getElementById('divide')
 const multiply = document.getElementById('multiply')
 const minus = document.getElementById('minus')
-const plus = document.getElementById('plus')
+const add = document.getElementById('add')
 const equal = document.getElementById('equal')
 const decimal = document.getElementById('decimal')
 const answer = document.getElementById('answer')
@@ -14,6 +14,8 @@ let secondNumber;
 let operator = ''
 let tempAnswer = 0;
 let checkSecondNumber = true;
+let isOperatorClicked = false;
+
 
 document.querySelectorAll('.number').forEach(item => {
   item.addEventListener('click', function (e) {
@@ -41,17 +43,34 @@ document.querySelectorAll('.number').forEach(item => {
         process.innerText += addNumber
       }
     }
+    // add.style.cssText = "pointer-events; unset;"
+    // add.style.pointerEvents = 'unset'
+    add.setAttribute('style', 'pointer-events; auto; background: aliceblue');
+    minus.setAttribute('style', 'pointer-events; auto; background: aliceblue')
+    multiply.setAttribute('style', 'pointer-events; auto; background: aliceblue')
+    divide.setAttribute('style', 'pointer-events; auto; background: aliceblue')
+
+    // debugger;
+    // isOperatorClicked = false;
+
+    // add.style.pointerEvents = 'auto';
+    // add.style.background = 'aliceblue';
+
   });
 });
 
 // ADD NUMBER EVENT
-plus.addEventListener('click', function () {
+add.addEventListener('click', function () {
   // debugger;
   if (!secondNumber) {
-    // debugger;
-    process.innerText += '+'
+    // Modify operator on screen
+    if (operator) {
+      process.innerText = process.innerText.slice(0, process.innerText.length - 1) + '+'
+    } else {
+      process.innerText += '+'
+    }
     operator = '+'
-    return checkSecondNumber = false;
+    checkSecondNumber = false;
   } else {
     // debugger;
     process.innerText += '+'
@@ -82,7 +101,21 @@ plus.addEventListener('click', function () {
     operator = '+'
     secondNumber = undefined
     firstNumber = undefined
+
   }
+
+
+
+  add.style.pointerEvents = 'none';
+  add.style.background = 'blue';
+
+  minus.style.pointerEvents = 'unset';
+  minus.style.background = 'aliceblue';
+  multiply.style.pointerEvents = 'unset';
+  multiply.style.background = 'aliceblue';
+  divide.style.pointerEvents = 'unset';
+  divide.style.background = 'aliceblue';
+
 });
 
 // SUBTRACT NUMBER EVENT
@@ -90,9 +123,16 @@ minus.addEventListener('click', function () {
   // debugger;
   if (!secondNumber) {
     // debugger;
-    process.innerText += '-'
+    // Modify operator on screen
+    if (operator) {
+      process.innerText = process.innerText.slice(0, process.innerText.length - 1) + '-'
+    } else {
+      process.innerText += '-'
+    }
+
+
     operator = '-'
-    return checkSecondNumber = false;
+    checkSecondNumber = false;
   } else {
     // debugger;
     process.innerText += '-'
@@ -124,6 +164,19 @@ minus.addEventListener('click', function () {
     secondNumber = undefined
     firstNumber = undefined
   }
+
+  // debugger;
+
+  minus.style.pointerEvents = 'none';
+  minus.style.background = 'blue';
+
+  add.style.pointerEvents = 'unset';
+  add.style.background = 'aliceblue';
+  multiply.style.pointerEvents = 'unset';
+  multiply.style.background = 'aliceblue';
+  divide.style.pointerEvents = 'unset';
+  divide.style.background = 'aliceblue';
+
 });
 
 // MULTIPLY NUMBER EVENT
@@ -131,9 +184,17 @@ multiply.addEventListener('click', function () {
   // debugger;
   if (!secondNumber) {
     // debugger;
-    process.innerText += 'x'
+    // Modify operator on screen
+    if (operator) {
+      process.innerText = process.innerText.slice(0, process.innerText.length - 1) + 'x'
+    } else {
+      process.innerText += 'x'
+    }
+
+
     operator = 'x'
-    return checkSecondNumber = false;
+    checkSecondNumber = false;
+
   } else {
     // debugger;
     process.innerText += 'x'
@@ -165,6 +226,18 @@ multiply.addEventListener('click', function () {
     secondNumber = undefined
     firstNumber = undefined
   }
+
+  multiply.style.pointerEvents = 'none';
+  multiply.style.background = 'blue';
+
+
+  add.style.pointerEvents = 'unset';
+  add.style.background = 'aliceblue';
+  minus.style.pointerEvents = 'unset';
+  minus.style.background = 'aliceblue';
+  divide.style.pointerEvents = 'unset';
+  divide.style.background = 'aliceblue';
+
 });
 
 // DIVIDE NUMBER EVENT
@@ -172,9 +245,17 @@ divide.addEventListener('click', function () {
   // debugger;
   if (!secondNumber) {
     // debugger;
-    process.innerText += '÷'
+    // Modify operator on screen
+    if (operator) {
+      process.innerText = process.innerText.slice(0, process.innerText.length - 1) + '÷'
+    } else {
+      process.innerText += '÷'
+    }
+
+
     operator = '÷'
-    return checkSecondNumber = false;
+    checkSecondNumber = false;
+
   } else {
     // debugger;
     process.innerText += '÷'
@@ -206,6 +287,17 @@ divide.addEventListener('click', function () {
     secondNumber = undefined
     firstNumber = undefined
   }
+
+  divide.style.pointerEvents = 'none';
+  divide.style.background = 'blue';
+
+  add.style.pointerEvents = 'unset';
+  add.style.background = 'aliceblue';
+  minus.style.pointerEvents = 'unset';
+  minus.style.background = 'aliceblue';
+  multiply.style.pointerEvents = 'unset';
+  multiply.style.background = 'aliceblue';
+
 });
 
 // Add DECIMAL 
@@ -228,7 +320,19 @@ clearBtn.addEventListener('click', function (e) {
   checkSecondNumber = true;
 
   process.innerText = '';
-  answer.innerText = '';
+  answer.innerText = '0';
+
+
+  add.style.pointerEvents = 'unset';
+  add.style.background = 'aliceblue';
+  minus.style.pointerEvents = 'unset';
+  minus.style.background = 'aliceblue';
+  multiply.style.pointerEvents = 'unset';
+  multiply.style.background = 'aliceblue';
+  divide.style.pointerEvents = 'unset';
+  divide.style.background = 'aliceblue';
+
+
 })
 
 // ANSWER of equasion
@@ -238,6 +342,9 @@ equal.addEventListener('click', function (e) {
 
   let newNum1 = Number(firstNumber)
   let newNum2 = Number(secondNumber)
+
+  // add.setAttribute('style', 'pointer-events; auto; background: aliceblue');
+  // isOperatorClicked = false;
 
   if (firstNumber) {
     if (operator === '+') {
@@ -260,6 +367,16 @@ equal.addEventListener('click', function (e) {
       answer.innerText = tempAnswer / newNum2
     }
   }
+
+  add.style.pointerEvents = 'unset';
+  add.style.background = 'aliceblue';
+  minus.style.pointerEvents = 'unset';
+  minus.style.background = 'aliceblue';
+  multiply.style.pointerEvents = 'unset';
+  multiply.style.background = 'aliceblue';
+  divide.style.pointerEvents = 'unset';
+  divide.style.background = 'aliceblue';
+
 })
 
 
