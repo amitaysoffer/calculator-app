@@ -2,9 +2,9 @@
 
 *Expense tracker with basic functionallity and local storage set up. Written in JS, HTML, CSS.*
 
-Click [HERE](https://amitaysoffer.github.io/expense-tracker-app/) to let the fun begin.
+Click [HERE](https://amitaysoffer.github.io/calculator-app/) to watch the app on Github pages.
 
-![Screenshot 2020-09-15 at 21 16 59](https://user-images.githubusercontent.com/31068256/93260151-e0fd2e80-f798-11ea-881d-eb3d3e2a57b9.png)
+![Screenshot 2020-09-15 at 21 28 56](https://user-images.githubusercontent.com/31068256/93261393-8bc21c80-f79a-11ea-8fb5-36e3fcbc7395.png)
 
 
 ## Summary
