@@ -1,382 +1,263 @@
 // Gloval variables
-const divide = document.getElementById('divide')
-const multiply = document.getElementById('multiply')
-const minus = document.getElementById('minus')
 const add = document.getElementById('add')
-const equal = document.getElementById('equal')
-const decimal = document.getElementById('decimal')
+const minus = document.getElementById('minus')
+const multiply = document.getElementById('multiply')
+const divide = document.getElementById('divide')
 const answer = document.getElementById('answer')
 const process = document.getElementById('process')
-const clearBtn = document.getElementById('clear-btn')
 
-let firstNumber;
-let secondNumber;
+let initialNumber;
+let lastNumber;
 let operator = ''
-let tempAnswer = 0;
-let checkSecondNumber = true;
-let isOperatorClicked = false;
+let currentAnswer = 0;
+let isInitialNumberOneDigitOrLess = true;
 
-
+// Click numbers event listener
 document.querySelectorAll('.number').forEach(item => {
   item.addEventListener('click', function (e) {
-    let addNumber = e.target.getAttribute('data-value');
-    // Checking first number
-    if (checkSecondNumber) {
-      if (firstNumber === undefined) {
-        firstNumber = addNumber
-        process.innerText = firstNumber
-      } else {
-        firstNumber += addNumber
-        process.innerText = firstNumber
-      }
-      // Checking second number
+    // Store new number
+    const newNumber = e.target.getAttribute('data-value');
+    // Store initial number
+    if (initialNumber === undefined && isInitialNumberOneDigitOrLess) {
+      initialNumber = newNumber
+      process.innerText = initialNumber
+    } else if (isInitialNumberOneDigitOrLess) {
+      initialNumber += newNumber
+      process.innerText = initialNumber
+      // Store last number
+    } else if (lastNumber === undefined && !isInitialNumberOneDigitOrLess) {
+      lastNumber = newNumber
+      process.innerText += lastNumber
     } else {
-      // debugger;
-      // Checking first digit
-      if (secondNumber === undefined) {
-        secondNumber = addNumber
-        process.innerText += secondNumber
-      } else {
-        // checking second digit
-        // debugger
-        secondNumber += addNumber
-        process.innerText += addNumber
-      }
+      lastNumber += newNumber
+      process.innerText += newNumber
     }
-    // add.style.cssText = "pointer-events; unset;"
-    // add.style.pointerEvents = 'unset'
-    add.setAttribute('style', 'pointer-events; auto; background: aliceblue');
-    minus.setAttribute('style', 'pointer-events; auto; background: aliceblue')
-    multiply.setAttribute('style', 'pointer-events; auto; background: aliceblue')
-    divide.setAttribute('style', 'pointer-events; auto; background: aliceblue')
 
-    // debugger;
-    // isOperatorClicked = false;
-
-    // add.style.pointerEvents = 'auto';
-    // add.style.background = 'aliceblue';
-
+    restartOperatorsBtnStyle();
   });
 });
 
-// ADD NUMBER EVENT
+const storeCurrentAnswer = function (selectedNumber, lastOperator, newOperator) {
+  if (lastOperator === '+') {
+    currentAnswer = Number(selectedNumber) + Number(lastNumber)
+  } else if (lastOperator === '-') {
+    currentAnswer = Number(selectedNumber) - Number(lastNumber)
+  } else if (lastOperator === 'x') {
+    currentAnswer = Number(selectedNumber) * Number(lastNumber)
+  } else if (lastOperator === '÷') {
+    currentAnswer = Number(selectedNumber) / Number(lastNumber)
+  }
+
+  operator = newOperator;
+  answer.innerText = currentAnswer
+  process.innerText += newOperator
+  lastNumber = undefined
+  initialNumber = undefined
+}
+
+const calcAnswer = function (selectedNumber, operator) {
+  if (operator === '+') {
+    answer.innerText = Number(selectedNumber) + Number(lastNumber)
+  } else if (operator === '-') {
+    answer.innerText = Number(selectedNumber) - Number(lastNumber)
+  } else if (operator === 'x') {
+    answer.innerText = Number(selectedNumber) * Number(lastNumber)
+  } else if (operator === '÷') {
+    answer.innerText = Number(selectedNumber) / Number(lastNumber)
+  }
+}
+
+
+const styleOperatorButtons = function (selectedOperator) {
+  const operatorList = ['add', 'minus', 'multiply', 'divide'];
+  const result = operatorList.filter(operator => operator != selectedOperator.id)
+
+  selectedOperator.style.pointerEvents = 'none';
+  selectedOperator.style.background = 'blue';
+
+  document.getElementById(result[0]).style.pointerEvents = 'unset';
+  document.getElementById(result[0]).style.background = 'aliceblue';
+  document.getElementById(result[1]).style.pointerEvents = 'unset';
+  document.getElementById(result[1]).style.background = 'aliceblue';
+  document.getElementById(result[2]).style.pointerEvents = 'unset';
+  document.getElementById(result[2]).style.background = 'aliceblue';
+}
+
+const restartOperatorsBtnStyle = function () {
+  add.setAttribute('style', 'pointer-events; auto; background: aliceblue');
+  minus.setAttribute('style', 'pointer-events; auto; background: aliceblue')
+  multiply.setAttribute('style', 'pointer-events; auto; background: aliceblue');
+  divide.setAttribute('style', 'pointer-events; auto; background: aliceblue');
+}
+
+const switchBetweenOperatorsFix = function (newOperator) {
+
+  process.innerText = process.innerText.slice(0, process.innerText.length - 1) + newOperator
+  return operator = newOperator
+}
+
+const errorMessage = function (operator) {
+  alert(`You must enter a number before you type '${operator}'`);
+}
+
+const addConditionsToInitialNumber = function (newOperator) {
+  process.innerText += newOperator
+  isInitialNumberOneDigitOrLess = false;
+  operator = newOperator
+}
+
+// Add event listener
 add.addEventListener('click', function () {
-  // debugger;
-  if (!secondNumber) {
-    // Modify operator on screen
-    if (operator) {
-      process.innerText = process.innerText.slice(0, process.innerText.length - 1) + '+'
-    } else {
-      process.innerText += '+'
-    }
-    operator = '+'
-    checkSecondNumber = false;
-  } else {
-    // debugger;
-    process.innerText += '+'
-
-    if (firstNumber) {
-      if (operator === '+') {
-        tempAnswer = Number(firstNumber) + Number(secondNumber)
-      } else if (operator === '-') {
-        tempAnswer = Number(firstNumber) - Number(secondNumber)
-      } else if (operator === 'x') {
-        tempAnswer = Number(firstNumber) * Number(secondNumber)
-      } else if (operator === '÷') {
-        tempAnswer = Number(firstNumber) / Number(secondNumber)
-      }
-    } else {
-      if (operator === '+') {
-        tempAnswer = Number(tempAnswer) + Number(secondNumber)
-      } else if (operator === '-') {
-        tempAnswer = Number(tempAnswer) - Number(secondNumber)
-      } else if (operator === 'x') {
-        tempAnswer = Number(tempAnswer) * Number(secondNumber)
-      } else if (operator === '÷') {
-        tempAnswer = Number(tempAnswer) / Number(secondNumber)
-      }
-    }
-    answer.innerText = tempAnswer
-
-    operator = '+'
-    secondNumber = undefined
-    firstNumber = undefined
-
+  // Adjust display operator if user changes operators
+  if (operator && !lastNumber) {
+    switchBetweenOperatorsFix('+');
+    // User clicks an operator before number
+  } else if (!operator && !initialNumber && !lastNumber) {
+    return errorMessage('+');
+  } else if (!lastNumber) {
+    addConditionsToInitialNumber('+');
+  }
+  // Create current answer of initial number
+  if (initialNumber && lastNumber) {
+    storeCurrentAnswer(initialNumber, operator, '+');
+    // Update current answer
+  } else if (lastNumber) {
+    storeCurrentAnswer(currentAnswer, operator, '+');
   }
 
-
-
-  add.style.pointerEvents = 'none';
-  add.style.background = 'blue';
-
-  minus.style.pointerEvents = 'unset';
-  minus.style.background = 'aliceblue';
-  multiply.style.pointerEvents = 'unset';
-  multiply.style.background = 'aliceblue';
-  divide.style.pointerEvents = 'unset';
-  divide.style.background = 'aliceblue';
-
+  styleOperatorButtons(this);
 });
 
-// SUBTRACT NUMBER EVENT
+// Subtract event listener
 minus.addEventListener('click', function () {
-  // debugger;
-  if (!secondNumber) {
-    // debugger;
-    // Modify operator on screen
-    if (operator) {
-      process.innerText = process.innerText.slice(0, process.innerText.length - 1) + '-'
-    } else {
-      process.innerText += '-'
-    }
-
-
-    operator = '-'
-    checkSecondNumber = false;
-  } else {
-    // debugger;
-    process.innerText += '-'
-
-    if (firstNumber) {
-      if (operator === '+') {
-        tempAnswer = Number(firstNumber) + Number(secondNumber)
-      } else if (operator === '-') {
-        tempAnswer = Number(firstNumber) - Number(secondNumber)
-      } else if (operator === 'x') {
-        tempAnswer = Number(firstNumber) * Number(secondNumber)
-      } else if (operator === '÷') {
-        tempAnswer = Number(firstNumber) / Number(secondNumber)
-      }
-    } else {
-      if (operator === '+') {
-        tempAnswer = tempAnswer + Number(secondNumber)
-      } else if (operator === '-') {
-        tempAnswer = tempAnswer - Number(secondNumber)
-      } else if (operator === 'x') {
-        tempAnswer = tempAnswer * Number(secondNumber)
-      } else if (operator === '÷') {
-        tempAnswer = tempAnswer / Number(secondNumber)
-      }
-    }
-    answer.innerText = tempAnswer
-
-    operator = '-'
-    secondNumber = undefined
-    firstNumber = undefined
+  // Adjust display operator if user changes operators
+  if (operator && !lastNumber) {
+    switchBetweenOperatorsFix('-');
+    // User clicks an operator before number
+  } else if (!operator && !initialNumber && !lastNumber) {
+    return errorMessage('-');
+  } else if (!lastNumber) {
+    addConditionsToInitialNumber('-');
+  }
+  // Create current answer of initial number
+  if (initialNumber && lastNumber) {
+    storeCurrentAnswer(initialNumber, operator, '-');
+    // Update current answer
+  } else if (lastNumber) {
+    storeCurrentAnswer(currentAnswer, operator, '-');
   }
 
-  // debugger;
-
-  minus.style.pointerEvents = 'none';
-  minus.style.background = 'blue';
-
-  add.style.pointerEvents = 'unset';
-  add.style.background = 'aliceblue';
-  multiply.style.pointerEvents = 'unset';
-  multiply.style.background = 'aliceblue';
-  divide.style.pointerEvents = 'unset';
-  divide.style.background = 'aliceblue';
-
+  styleOperatorButtons(this);
 });
 
-// MULTIPLY NUMBER EVENT
+// Multiply event listener
 multiply.addEventListener('click', function () {
-  // debugger;
-  if (!secondNumber) {
-    // debugger;
-    // Modify operator on screen
-    if (operator) {
-      process.innerText = process.innerText.slice(0, process.innerText.length - 1) + 'x'
-    } else {
-      process.innerText += 'x'
-    }
-
-
-    operator = 'x'
-    checkSecondNumber = false;
-
-  } else {
-    // debugger;
-    process.innerText += 'x'
-
-    if (firstNumber) {
-      if (operator === '+') {
-        tempAnswer = Number(firstNumber) + Number(secondNumber)
-      } else if (operator === '-') {
-        tempAnswer = Number(firstNumber) - Number(secondNumber)
-      } else if (operator === 'x') {
-        tempAnswer = Number(firstNumber) * Number(secondNumber)
-      } else if (operator === '÷') {
-        tempAnswer = Number(firstNumber) / Number(secondNumber)
-      }
-    } else {
-      if (operator === '+') {
-        tempAnswer = tempAnswer + Number(secondNumber)
-      } else if (operator === '-') {
-        tempAnswer = tempAnswer - Number(secondNumber)
-      } else if (operator === 'x') {
-        tempAnswer = tempAnswer * Number(secondNumber)
-      } else if (operator === '÷') {
-        tempAnswer = tempAnswer / Number(secondNumber)
-      }
-    }
-    answer.innerText = tempAnswer
-
-    operator = 'x'
-    secondNumber = undefined
-    firstNumber = undefined
+  // Adjust display operator if user changes operators
+  if (operator && !lastNumber) {
+    switchBetweenOperatorsFix('x');
+    // User clicks an operator before number
+  } else if (!operator && !initialNumber && !lastNumber) {
+    return errorMessage('x');
+  } else if (!lastNumber) {
+    addConditionsToInitialNumber('x');
+  }
+  // Create current answer of initial number
+  if (initialNumber && lastNumber) {
+    storeCurrentAnswer(initialNumber, operator, 'x');
+    // Update current answer
+  } else if (lastNumber) {
+    storeCurrentAnswer(currentAnswer, operator, 'x');
   }
 
-  multiply.style.pointerEvents = 'none';
-  multiply.style.background = 'blue';
-
-
-  add.style.pointerEvents = 'unset';
-  add.style.background = 'aliceblue';
-  minus.style.pointerEvents = 'unset';
-  minus.style.background = 'aliceblue';
-  divide.style.pointerEvents = 'unset';
-  divide.style.background = 'aliceblue';
-
+  styleOperatorButtons(this);
 });
 
-// DIVIDE NUMBER EVENT
+// Divide event listener
 divide.addEventListener('click', function () {
-  // debugger;
-  if (!secondNumber) {
-    // debugger;
-    // Modify operator on screen
-    if (operator) {
-      process.innerText = process.innerText.slice(0, process.innerText.length - 1) + '÷'
-    } else {
-      process.innerText += '÷'
-    }
-
-
-    operator = '÷'
-    checkSecondNumber = false;
-
-  } else {
-    // debugger;
-    process.innerText += '÷'
-
-    if (firstNumber) {
-      if (operator === '+') {
-        tempAnswer = Number(firstNumber) + Number(secondNumber)
-      } else if (operator === '-') {
-        tempAnswer = Number(firstNumber) - Number(secondNumber)
-      } else if (operator === 'x') {
-        tempAnswer = Number(firstNumber) * Number(secondNumber)
-      } else if (operator === '÷') {
-        tempAnswer = Number(firstNumber) / Number(secondNumber)
-      }
-    } else {
-      if (operator === '+') {
-        tempAnswer = tempAnswer + Number(secondNumber)
-      } else if (operator === '-') {
-        tempAnswer = tempAnswer - Number(secondNumber)
-      } else if (operator === 'x') {
-        tempAnswer = tempAnswer * Number(secondNumber)
-      } else if (operator === '÷') {
-        tempAnswer = tempAnswer / Number(secondNumber)
-      }
-    }
-    answer.innerText = tempAnswer
-
-    operator = '÷'
-    secondNumber = undefined
-    firstNumber = undefined
+  // Adjust display operator if user changes operators
+  if (operator && !lastNumber) {
+    switchBetweenOperatorsFix('÷');
+    // User clicks an operator before number
+  } else if (!operator && !initialNumber && !lastNumber) {
+    return errorMessage('÷');
+  } else if (!lastNumber) {
+    addConditionsToInitialNumber('÷');
+  }
+  // Create current answer of initial number
+  if (initialNumber && lastNumber) {
+    storeCurrentAnswer(initialNumber, operator, '÷');
+    // Update current answer
+  } else if (lastNumber) {
+    storeCurrentAnswer(currentAnswer, operator, '÷');
   }
 
-  divide.style.pointerEvents = 'none';
-  divide.style.background = 'blue';
-
-  add.style.pointerEvents = 'unset';
-  add.style.background = 'aliceblue';
-  minus.style.pointerEvents = 'unset';
-  minus.style.background = 'aliceblue';
-  multiply.style.pointerEvents = 'unset';
-  multiply.style.background = 'aliceblue';
-
+  styleOperatorButtons(this);
 });
 
-// Add DECIMAL 
-decimal.addEventListener('click', function () {
-  // debugger;
-  if (firstNumber && !secondNumber) {
-    firstNumber += '.'
-    process.innerText = firstNumber
-  } else {
-    secondNumber += '.'
-    process.innerText += '.'
+let isDecimal = false;
+// Decimal event listener
+document.getElementById('decimal').addEventListener('click', function () {
+  const text = process.innerText;
+  if (text.charAt(text.length - 1) !== '.' && text) {
+    if (initialNumber && !lastNumber) {
+      initialNumber += '.'
+      process.innerText += '.'
+    } else {
+      lastNumber += '.'
+      process.innerText += '.'
+    }
   }
+  isDecimal = true;
 });
 
-clearBtn.addEventListener('click', function (e) {
-  firstNumber = undefined;
-  secondNumber = undefined;
+
+// Restart to default settings
+document.getElementById('clear-btn').addEventListener('click', function (e) {
+  initialNumber = undefined;
+  lastNumber = undefined;
   operator = ''
-  tempAnswer = 0;
-  checkSecondNumber = true;
+  currentAnswer = 0;
+  isInitialNumberOneDigitOrLess = true;
 
   process.innerText = '';
   answer.innerText = '0';
 
-
-  add.style.pointerEvents = 'unset';
-  add.style.background = 'aliceblue';
-  minus.style.pointerEvents = 'unset';
-  minus.style.background = 'aliceblue';
-  multiply.style.pointerEvents = 'unset';
-  multiply.style.background = 'aliceblue';
-  divide.style.pointerEvents = 'unset';
-  divide.style.background = 'aliceblue';
-
-
+  restartOperatorsBtnStyle();
 })
 
-// ANSWER of equasion
-equal.addEventListener('click', function (e) {
+// Answer event listener
+document.getElementById('equal').addEventListener('click', function (e) {
+
+  if (initialNumber) {
+    calcAnswer(initialNumber, operator);
+  } else {
+    calcAnswer(currentAnswer, operator);
+  }
 
   // debugger;
 
-  let newNum1 = Number(firstNumber)
-  let newNum2 = Number(secondNumber)
+  // let a = renderMinimizedAnswer();
+  // debugger;
+  answer.innerText = renderAnswer()
 
-  // add.setAttribute('style', 'pointer-events; auto; background: aliceblue');
-  // isOperatorClicked = false;
 
-  if (firstNumber) {
-    if (operator === '+') {
-      answer.innerText = newNum1 + newNum2
-    } else if (operator === '-') {
-      answer.innerText = newNum1 - newNum2
-    } else if (operator === 'x') {
-      answer.innerText = newNum1 * newNum2
-    } else if (operator === '÷') {
-      answer.innerText = newNum1 / newNum2
-    }
-  } else {
-    if (operator === '+') {
-      answer.innerText = tempAnswer + newNum2
-    } else if (operator === '-') {
-      answer.innerText = tempAnswer - newNum2
-    } else if (operator === 'x') {
-      answer.innerText = tempAnswer * newNum2
-    } else if (operator === '÷') {
-      answer.innerText = tempAnswer / newNum2
-    }
-  }
-
-  add.style.pointerEvents = 'unset';
-  add.style.background = 'aliceblue';
-  minus.style.pointerEvents = 'unset';
-  minus.style.background = 'aliceblue';
-  multiply.style.pointerEvents = 'unset';
-  multiply.style.background = 'aliceblue';
-  divide.style.pointerEvents = 'unset';
-  divide.style.background = 'aliceblue';
-
+  restartOperatorsBtnStyle();
 })
 
-
+// 3.1 + 2.2
+const renderAnswer = function () {
+  // debugger
+  if (isDecimal) {
+    const text = answer.innerText;
+    let minimizedAnswer;
+    text.split('').forEach(function (number, index) {
+      if (number === '.') {
+        let unDesiredPart = text.slice(index + 3, text.length);
+        minimizedAnswer = text.replace(unDesiredPart, '');
+      }
+    })
+    return minimizedAnswer
+  } else {
+    return answer.innerText
+  }
+}
