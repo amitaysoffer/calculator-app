@@ -9,18 +9,20 @@
 
 <body>
   <div id="grid-container">
-
     <!-- Display Section -->
     <section id="display-container">
-      <button id="clear-btn">C</button>
-      <div id="display-digits" type="text">
-        <p id="process"></p>
-        <p id="answer">0</p>
-      </div>
+      <p id="process"></p>
+      <span id="divider"></span>
+      <p id="answer">0</p>
     </section>
-
-    <!-- Numbers Section -->
-    <section id="numbers-container">
+    <!-- Main Section -->
+    <section id="main-container">
+      <button id="clear-btn">C</button>
+      <div id="equal">=</div>
+      <div id="divide" class="operator">÷</div>
+      <div id="multiply" class="operator">x</div>
+      <div id="minus" class="operator">-</div>
+      <div id="add" class="operator">+</div>
       <div data-value="7" class="number">7</div>
       <div data-value="8" class="number">8</div>
       <div data-value="9" class="number">9</div>
@@ -30,31 +32,10 @@
       <div data-value="1" class="number">1</div>
       <div data-value="2" class="number">2</div>
       <div data-value="3" class="number">3</div>
-      <div data-value="0" class="number">0</div>
+      <div data-value="0" id="zero" class="number">0</div>
       <div id="decimal">.</div>
-      <div id="equal">=</div>
-    </section>
-    <!-- Operation Section -->
-    <section id="operation-container">
-      <div id="divide" class="opretation">
-        <span>÷</span>
-      </div>
-      <div id="multiply" class="opretation">
-        <span>x</span>
-      </div>
-      <div id="minus" class="opretation">
-        <span>-</span>
-      </div>
-      <div id="add" class="opretation">
-        <span>+</span>
-      </div>
-
-
     </section>
   </div>
-
-
-
   <script src="script.js"></script>
 </body>
 

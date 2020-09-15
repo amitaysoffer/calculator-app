@@ -1,4 +1,4 @@
-// Gloval variables
+// Global variables
 const add = document.getElementById('add');
 const minus = document.getElementById('minus');
 const multiply = document.getElementById('multiply');
@@ -20,16 +20,16 @@ class UI {
   static styleOperatorButtons(selectedOperator) {
     const operatorList = ['add', 'minus', 'multiply', 'divide'];
     const result = operatorList.filter(operator => operator != selectedOperator.id)
-
+    // Style the clicked operator
     selectedOperator.style.pointerEvents = 'none';
     selectedOperator.style.background = 'blue';
-
+    // Style rest operators
     document.getElementById(result[0]).style.pointerEvents = 'unset';
-    document.getElementById(result[0]).style.background = 'aliceblue';
+    document.getElementById(result[0]).style.background = '#5E057F';
     document.getElementById(result[1]).style.pointerEvents = 'unset';
-    document.getElementById(result[1]).style.background = 'aliceblue';
+    document.getElementById(result[1]).style.background = '#5E057F';
     document.getElementById(result[2]).style.pointerEvents = 'unset';
-    document.getElementById(result[2]).style.background = 'aliceblue';
+    document.getElementById(result[2]).style.background = '#5E057F';
   }
   static errorMessage(operator) {
     alert(`You must enter a number before you enter '${operator}'`);
@@ -38,7 +38,7 @@ class UI {
     const text = answer.innerText;
     answer.innerText = text.substring(0, text.indexOf('.') + 3);
   }
-  static renderAnswer(selectedNumber, lastOperator, newOperator) {
+  static renderAnswer(selectedNumber, lastOperator) {
     if (lastOperator === '+') {
       answer.innerText = Number(selectedNumber) + Number(lastNumber)
     } else if (lastOperator === '-') {
@@ -50,10 +50,10 @@ class UI {
     }
   }
   static restartOperatorsBtnStyle() {
-    add.setAttribute('style', 'pointer-events; auto; background: aliceblue');
-    minus.setAttribute('style', 'pointer-events; auto; background: aliceblue')
-    multiply.setAttribute('style', 'pointer-events; auto; background: aliceblue');
-    divide.setAttribute('style', 'pointer-events; auto; background: aliceblue');
+    add.setAttribute('style', 'pointer-events; auto; background: #5E057F');
+    minus.setAttribute('style', 'pointer-events; auto; background: #5E057F')
+    multiply.setAttribute('style', 'pointer-events; auto; background: #5E057F');
+    divide.setAttribute('style', 'pointer-events; auto; background: #5E057F');
   }
 }
 
@@ -67,10 +67,10 @@ class Utilities {
     isInitialNumberOneDigitOrLess = false;
     operator = newOperator
   }
-  static updateSettings(operator) {
-    operator = operator;
+  static updateSettings(newOperator) {
+    operator = newOperator;
     currentAnswer = answer.innerText
-    process.innerText += operator
+    process.innerText += newOperator
     lastNumber = undefined
     initialNumber = undefined
   }
@@ -98,7 +98,6 @@ add.addEventListener('click', function () {
     UI.renderAnswer(currentAnswer, operator, '+');
     Utilities.updateSettings('+');
   }
-
 
   if (isDecimal) {
     UI.renderMinimizedRemainder();
@@ -162,7 +161,6 @@ multiply.addEventListener('click', function () {
 });
 
 divide.addEventListener('click', function () {
-  // debugger;
   // Adjust display operator if user changes operators
   if (operator && !lastNumber) {
     Utilities.switchBetweenOperatorsFix('÷');
