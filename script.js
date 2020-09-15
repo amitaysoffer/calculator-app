@@ -36,12 +36,7 @@ class UI {
   }
   static renderMinimizedRemainder() {
     const text = answer.innerText;
-    text.split('').forEach(function (number, index) {
-      if (number === '.') {
-        let unDesiredPart = text.slice(index + 3, text.length);
-        answer.innerText = text.replace(unDesiredPart, '');
-      }
-    })
+    answer.innerText = text.substring(0, text.indexOf('.') + 3);
   }
   static renderAnswer(selectedNumber, lastOperator, newOperator) {
     if (lastOperator === '+') {
