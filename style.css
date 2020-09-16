@@ -102,3 +102,8 @@ html, body {
   grid-column: 1 / 3;
 }
 
+#main-container .operator-clicked {
+  pointer-events: none; 
+  background: blue;
+}
+

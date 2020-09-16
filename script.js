@@ -21,15 +21,11 @@ class UI {
     const operatorList = ['add', 'minus', 'multiply', 'divide'];
     const result = operatorList.filter(operator => operator != selectedOperator.id)
     // Style the clicked operator
-    selectedOperator.style.pointerEvents = 'none';
-    selectedOperator.style.background = 'blue';
+    selectedOperator.classList.add('operator-clicked')
     // Style rest operators
-    document.getElementById(result[0]).style.pointerEvents = 'unset';
-    document.getElementById(result[0]).style.background = '#5E057F';
-    document.getElementById(result[1]).style.pointerEvents = 'unset';
-    document.getElementById(result[1]).style.background = '#5E057F';
-    document.getElementById(result[2]).style.pointerEvents = 'unset';
-    document.getElementById(result[2]).style.background = '#5E057F';
+    document.getElementById(result[0]).classList.remove('operator-clicked');
+    document.getElementById(result[1]).classList.remove('operator-clicked');
+    document.getElementById(result[2]).classList.remove('operator-clicked');
   }
   static errorMessage(operator) {
     alert(`You must enter a number before you enter '${operator}'`);
@@ -39,21 +35,25 @@ class UI {
     answer.innerText = text.substring(0, text.indexOf('.') + 3);
   }
   static renderAnswer(selectedNumber, lastOperator) {
-    if (lastOperator === '+') {
-      answer.innerText = Number(selectedNumber) + Number(lastNumber)
-    } else if (lastOperator === '-') {
-      answer.innerText = Number(selectedNumber) - Number(lastNumber)
-    } else if (lastOperator === 'x') {
-      answer.innerText = Number(selectedNumber) * Number(lastNumber)
-    } else if (lastOperator === '÷') {
-      answer.innerText = Number(selectedNumber) / Number(lastNumber)
+    switch (lastOperator) {
+      case '+':
+        answer.innerText = Number(selectedNumber) + Number(lastNumber);
+        break;
+      case '-':
+        answer.innerText = Number(selectedNumber) - Number(lastNumber);
+        break;
+      case 'x':
+        answer.innerText = Number(selectedNumber) * Number(lastNumber);
+        break;
+      case '÷':
+        answer.innerText = Number(selectedNumber) / Number(lastNumber);
     }
   }
   static restartOperatorsBtnStyle() {
-    add.setAttribute('style', 'pointer-events; auto; background: #5E057F');
-    minus.setAttribute('style', 'pointer-events; auto; background: #5E057F')
-    multiply.setAttribute('style', 'pointer-events; auto; background: #5E057F');
-    divide.setAttribute('style', 'pointer-events; auto; background: #5E057F');
+    add.classList.remove('operator-clicked')
+    minus.classList.remove('operator-clicked')
+    multiply.classList.remove('operator-clicked')
+    divide.classList.remove('operator-clicked')
   }
 }
 
@@ -81,7 +81,6 @@ add.addEventListener('click', function () {
   // Adjust display operator if user changes operators
   if (operator && !lastNumber) {
     Utilities.switchBetweenOperatorsFix('+');
-
     // User clicks an operator before number
   } else if (!operator && !initialNumber && !lastNumber) {
     return UI.errorMessage('+');
