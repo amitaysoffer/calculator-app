@@ -4,6 +4,9 @@
 
 <img src="js.png" width="100"> <img src="html.png" width="100"> <img src="css.png" width="100">  
 
+![js](MDimages/js.png) ![html](MDimages/html.png) ![css](MDimages/css.png)
+
+
 Click [HERE](https://amitaysoffer.github.io/calculator-app/) to watch the app on Github pages.
 
 ![Screenshot 2020-09-15 at 21 28 56](https://user-images.githubusercontent.com/31068256/93261393-8bc21c80-f79a-11ea-8fb5-36e3fcbc7395.png)
