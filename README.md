@@ -2,10 +2,7 @@
 
 > Calculator app written in Javascript, HTML & CSS
 
-<img src="js.png" width="100"> <img src="html.png" width="100"> <img src="css.png" width="100">  
-
-![js](MDimages/js.png) ![html](MDimages/html.png) ![css](MDimages/css.png)
-
+<img src="https://img.icons8.com/color/480/000000/javascript.png"/> <img src="https://img.icons8.com/color/480/000000/css3.png"/> <img src="https://img.icons8.com/color/480/000000/html-5.png"/>
 
 Click [HERE](https://amitaysoffer.github.io/calculator-app/) to watch the app on Github pages.
 
