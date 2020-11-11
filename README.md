@@ -1,6 +1,9 @@
-# Pure JS Calculator App
+# Javascript Calculator
 
-*Calculator app with all the important features. Written in Javascript, HTML, and CSS.*
+> Calculator app written in Javascript, HTML & CSS
+
+<img src="js.png" width="100"> <img src="html.png" width="100"> <img src="css.png" width="100">  
+
 
 Click [HERE](https://amitaysoffer.github.io/calculator-app/) to watch the app on Github pages.
 
