@@ -6,7 +6,7 @@
 
 Click [HERE](https://amitaysoffer.github.io/calculator-app/) to watch the app on Github pages.
 
-<img src="https://user-images.githubusercontent.com/31068256/93261393-8bc21c80-f79a-11ea-8fb5-36e3fcbc7395.png">
+<img src="https://user-images.githubusercontent.com/31068256/93261393-8bc21c80-f79a-11ea-8fb5-36e3fcbc7395.png" width="250" >
 
 
 ## Summary
