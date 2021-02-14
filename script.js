@@ -1,3 +1,5 @@
+const calcFun = require('./calc');
+
 // Global variables
 const add = document.getElementById('add');
 const minus = document.getElementById('minus');
@@ -57,16 +59,17 @@ function renderMinimizedRemainder() {
 }
 
 function performCalculation() {
-  switch (operator) {
-    case '+':
-      return Number(firstOperhand) + Number(secondOperhand);
-    case '-':
-      return Number(firstOperhand) - Number(secondOperhand);
-    case 'x':
-      return Number(firstOperhand) * Number(secondOperhand);
-    case '÷':
-      return Number(firstOperhand) / Number(secondOperhand);
-  }
+  calcFun(operator, firstOperhand, secondOperhand);
+  // switch (operator) {
+  //   case '+':
+  //     return Number(firstOperhand) + Number(secondOperhand);
+  //   case '-':
+  //     return Number(firstOperhand) - Number(secondOperhand);
+  //   case 'x':
+  //     return Number(firstOperhand) * Number(secondOperhand);
+  //   case '÷':
+  //     return Number(firstOperhand) / Number(secondOperhand);
+  // }
 }
 
 function restartOperatorsBtnStyle() {
@@ -163,8 +166,8 @@ document.querySelectorAll('.number').forEach(number => {
   });
 });
 
-function sum(a, b) {
-  return a + b;
-}
+// function sum(a, b) {
+//   return a + b;
+// }
 
-module.exports = { sum };
+// module.exports = { performCalculation };
