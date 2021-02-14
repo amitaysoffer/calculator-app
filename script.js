@@ -59,7 +59,7 @@ function renderMinimizedRemainder() {
 }
 
 function performCalculation() {
-  calcFun(operator, firstOperhand, secondOperhand);
+  return calcFun(operator, firstOperhand, secondOperhand);
   // switch (operator) {
   //   case '+':
   //     return Number(firstOperhand) + Number(secondOperhand);
