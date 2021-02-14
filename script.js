@@ -163,10 +163,8 @@ document.querySelectorAll('.number').forEach(number => {
   });
 });
 
-// const add = (num1, num2) => num1 + num2;
 function sum(a, b) {
   return a + b;
 }
 
-// module.exports = sum;
 module.exports = { sum };
