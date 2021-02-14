@@ -1,47 +1,53 @@
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="title" property="og:title" content="Calculator App" />
+    <meta property="og:type" content="Javascript, HTML, CSS" />
+    <meta
+      name="image"
+      property="og:image"
+      content="https://user-images.githubusercontent.com/31068256/105777166-d1b99900-5f61-11eb-92fe-9b0ea19515ae.png"
+    />
+    <meta
+      name="description"
+      property="og:description"
+      content="Calculator made with Javascript"
+    />
+    <meta name="author" content="Amitay Soffer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Calculator</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="title" property="og:title" content="Calculator App" />
-  <meta property="og:type" content="Javascript, HTML, CSS" />
-  <meta name="image" property="og:image" content="https://user-images.githubusercontent.com/31068256/105777166-d1b99900-5f61-11eb-92fe-9b0ea19515ae.png" />
-  <meta name="description" property="og:description" content="Calculator made with Javascript" />
-  <meta name="author" content="Amitay Soffer" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="style.css">
-  <title>Calculator</title>
-</head>
-
-<body>
-  <div id="grid-container">
-    <!-- Display Section -->
-    <section id="display-container">
-      <p id="process"></p>
-      <span id="divider"></span>
-      <p id="answer">0</p>
-    </section>
-    <!-- Main Section -->
-    <section id="main-container">
-      <button id="clear-btn">C</button>
-      <div id="equal">=</div>
-      <div id="divide" class="operator">÷</div>
-      <div id="multiply" class="operator">x</div>
-      <div id="minus" class="operator">-</div>
-      <div id="add" class="operator">+</div>
-      <div data-value="7" class="number">7</div>
-      <div data-value="8" class="number">8</div>
-      <div data-value="9" class="number">9</div>
-      <div data-value="4" class="number">4</div>
-      <div data-value="5" class="number">5</div>
-      <div data-value="6" class="number">6</div>
-      <div data-value="1" class="number">1</div>
-      <div data-value="2" class="number">2</div>
-      <div data-value="3" class="number">3</div>
-      <div data-value="0" id="zero" class="number">0</div>
-      <div id="decimal">.</div>
-    </section>
-  </div>
-  <script src="script.js"></script>
-</body>
-
+  <body>
+    <div id="grid-container">
+      <!-- Display Section -->
+      <section id="display-container">
+        <p id="process"></p>
+        <span id="divider"></span>
+        <p id="answer">0</p>
+      </section>
+      <!-- Main Section -->
+      <section id="main-container">
+        <button id="clear-btn">C</button>
+        <div id="equal">=</div>
+        <div id="divide" class="operator">÷</div>
+        <div id="multiply" class="operator">x</div>
+        <div id="minus" class="operator">-</div>
+        <div id="add" class="operator">+</div>
+        <div data-value="7" class="number">7</div>
+        <div data-value="8" class="number">8</div>
+        <div data-value="9" class="number">9</div>
+        <div data-value="4" class="number">4</div>
+        <div data-value="5" class="number">5</div>
+        <div data-value="6" class="number">6</div>
+        <div data-value="1" class="number">1</div>
+        <div data-value="2" class="number">2</div>
+        <div data-value="3" class="number">3</div>
+        <div data-value="0" id="zero" class="number">0</div>
+        <div id="decimal">.</div>
+      </section>
+    </div>
+    <script type="module" src="script.js"></script>
+  </body>
 </html>

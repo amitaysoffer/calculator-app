@@ -2,11 +2,12 @@
 
 * {
   margin: 0;
-  padding: 0; 
+  padding: 0;
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   font-family: 'Libre Baskerville', serif;
   line-height: 1.5;
   font-size: 28px;
@@ -17,12 +18,12 @@ html, body {
   width: 300px;
   height: 600px;
   display: grid;
-  grid-template-rows: 1fr 3fr ;
+  grid-template-rows: 1fr 3fr;
   grid-template-columns: 2fr;
   margin: 50px auto;
-  -webkit-box-shadow: 10px 10px 80px 30px rgba(0,0,0,0.75);
-  -moz-box-shadow: 10px 10px 80px 30px rgba(0,0,0,0.75);
-  box-shadow: 10px 10px 80px 30px rgba(0,0,0,0.75); 
+  -webkit-box-shadow: 10px 10px 80px 30px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 80px 30px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 80px 30px rgba(0, 0, 0, 0.75);
 }
 
 /* Display */
@@ -64,9 +65,9 @@ html, body {
 }
 
 #main-container > div {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #main-container div:hover {
@@ -95,7 +96,7 @@ html, body {
 
 #main-container .operator {
   grid-column: 5 / 4;
-  background: #5E057F;
+  background: #5e057f;
 }
 
 #main-container #zero {
@@ -103,7 +104,6 @@ html, body {
 }
 
 #main-container .operator-clicked {
-  pointer-events: none; 
+  pointer-events: none;
   background: blue;
 }
-

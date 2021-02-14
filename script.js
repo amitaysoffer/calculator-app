@@ -11,34 +11,36 @@ const clear = document.getElementById('clear-btn');
 
 let firstOperhand;
 let secondOperhand;
-let operator = ''
+let operator = '';
 let isDecimal = false;
 
 function setFirstOperhand(number) {
   if (!firstOperhand) {
-    firstOperhand = number
-    process.innerText = firstOperhand
+    firstOperhand = number;
+    process.innerText = firstOperhand;
   } else {
-    firstOperhand += number
-    process.innerText = firstOperhand
+    firstOperhand += number;
+    process.innerText = firstOperhand;
   }
 }
 
 function setSecondOperhand(number) {
   if (!secondOperhand) {
-    secondOperhand = number
-    process.innerText += secondOperhand
+    secondOperhand = number;
+    process.innerText += secondOperhand;
   } else {
-    secondOperhand += number
-    process.innerText += number
+    secondOperhand += number;
+    process.innerText += number;
   }
 }
 
 function styleOperatorButtons(operatorElement) {
   const operatorList = ['add', 'minus', 'multiply', 'divide'];
-  const result = operatorList.filter(operator => operator != operatorElement.id)
+  const result = operatorList.filter(
+    operator => operator != operatorElement.id
+  );
   // Style the clicked operator
-  operatorElement.classList.add('operator-clicked')
+  operatorElement.classList.add('operator-clicked');
   // Style rest of operators
   document.getElementById(result[0]).classList.remove('operator-clicked');
   document.getElementById(result[1]).classList.remove('operator-clicked');
@@ -68,10 +70,10 @@ function performCalculation() {
 }
 
 function restartOperatorsBtnStyle() {
-  add.classList.remove('operator-clicked')
-  minus.classList.remove('operator-clicked')
-  multiply.classList.remove('operator-clicked')
-  divide.classList.remove('operator-clicked')
+  add.classList.remove('operator-clicked');
+  minus.classList.remove('operator-clicked');
+  multiply.classList.remove('operator-clicked');
+  divide.classList.remove('operator-clicked');
 }
 
 const operatorButtons = document.querySelectorAll('.operator');
@@ -84,11 +86,14 @@ operatorButtons.forEach(btn => {
     }
     // Fix if user presses operator when operator is in play
     if (operator && !secondOperhand) {
-      process.innerText = process.innerText.slice(0, process.innerText.length - 1);
+      process.innerText = process.innerText.slice(
+        0,
+        process.innerText.length - 1
+      );
     }
     // check to see if an operation is ongoing
     if (operator && secondOperhand) {
-      const result = performCalculation()
+      const result = performCalculation();
       answer.innerText = result;
       firstOperhand = result;
       secondOperhand = undefined;
@@ -98,20 +103,20 @@ operatorButtons.forEach(btn => {
     process.innerText += operator;
     styleOperatorButtons(e.target);
   });
-})
+});
 
 decimal.addEventListener('click', function () {
   const text = process.innerText;
   if (text.charAt(text.length - 1) !== '.' && text) {
     if (firstOperhand && !secondOperhand) {
-      firstOperhand += '.'
-      process.innerText += '.'
+      firstOperhand += '.';
+      process.innerText += '.';
     } else {
-      secondOperhand += '.'
-      process.innerText += '.'
+      secondOperhand += '.';
+      process.innerText += '.';
     }
   } else {
-    errorMessage('decimal')
+    errorMessage('decimal');
   }
   isDecimal = true;
 });
@@ -119,14 +124,14 @@ decimal.addEventListener('click', function () {
 clear.addEventListener('click', function (e) {
   firstOperhand = undefined;
   secondOperhand = undefined;
-  operator = ''
+  operator = '';
   isDecimal = false;
 
   process.innerText = '';
   answer.innerText = '0';
 
   restartOperatorsBtnStyle();
-})
+});
 
 equal.addEventListener('click', function (e) {
   if (firstOperhand && secondOperhand && operator) {
@@ -136,21 +141,21 @@ equal.addEventListener('click', function (e) {
     secondOperhand = undefined;
     operator = undefined;
   } else {
-    errorMessage('=')
+    errorMessage('=');
   }
 
   if (isDecimal) {
     renderMinimizedRemainder();
-  };
+  }
   restartOperatorsBtnStyle();
-})
+});
 
 // Click numbers event listener
 document.querySelectorAll('.number').forEach(number => {
   number.addEventListener('click', function (e) {
     const newNumber = e.target.getAttribute('data-value');
     if (!operator) {
-      setFirstOperhand(newNumber)
+      setFirstOperhand(newNumber);
     } else {
       setSecondOperhand(newNumber);
     }
@@ -158,3 +163,10 @@ document.querySelectorAll('.number').forEach(number => {
   });
 });
 
+// const add = (num1, num2) => num1 + num2;
+function sum(a, b) {
+  return a + b;
+}
+
+// module.exports = sum;
+module.exports = { sum };

@@ -1,0 +1,23 @@
+{
+  "name": "calculator_app",
+  "version": "1.0.0",
+  "description": "> Calculator app written in Javascript, HTML & CSS",
+  "main": "script.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amitaysoffer/calculator-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amitaysoffer/calculator-app/issues"
+  },
+  "homepage": "https://github.com/amitaysoffer/calculator-app#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
