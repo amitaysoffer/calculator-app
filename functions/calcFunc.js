@@ -11,4 +11,4 @@ const calcFunc = (operator, firstOperhand, secondOperhand) => {
   }
 };
 
-module.exports = { calcFunc };
+module.exports = calcFunc;

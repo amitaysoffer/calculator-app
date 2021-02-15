@@ -1,4 +1,8 @@
-const calcFun = require('./calc');
+const calcFun = require('./functions/calcFunc');
+const createErrorMessage = require('./functions/createErrorMessage');
+
+// import { calcFun } from './functions/calcFunc';
+// import { createErrorMessage } from './functions/createErrorMessage';
 
 // Global variables
 const add = document.getElementById('add');
@@ -49,8 +53,9 @@ function styleOperatorButtons(operatorElement) {
   document.getElementById(result[2]).classList.remove('operator-clicked');
 }
 
-function errorMessage(operator) {
-  alert(`You must enter a number before you enter '${operator}'`);
+function alertErrorMessage(operator) {
+  const errorMessage = createErrorMessage(operator);
+  alert(errorMessage);
 }
 
 function renderMinimizedRemainder() {
@@ -59,17 +64,7 @@ function renderMinimizedRemainder() {
 }
 
 function performCalculation() {
-  return calcFun(operator, firstOperhand, secondOperhand);
-  // switch (operator) {
-  //   case '+':
-  //     return Number(firstOperhand) + Number(secondOperhand);
-  //   case '-':
-  //     return Number(firstOperhand) - Number(secondOperhand);
-  //   case 'x':
-  //     return Number(firstOperhand) * Number(secondOperhand);
-  //   case '÷':
-  //     return Number(firstOperhand) / Number(secondOperhand);
-  // }
+  calcFun(operator, firstOperhand, secondOperhand);
 }
 
 function restartOperatorsBtnStyle() {
@@ -85,7 +80,7 @@ operatorButtons.forEach(btn => {
     const currentOperator = e.target.textContent;
     // Check if operator is pressed before number
     if (!operator && !firstOperhand && !secondOperhand) {
-      return errorMessage(currentOperator);
+      return alertErrorMessage(currentOperator);
     }
     // Fix if user presses operator when operator is in play
     if (operator && !secondOperhand) {
@@ -119,7 +114,7 @@ decimal.addEventListener('click', function () {
       process.innerText += '.';
     }
   } else {
-    errorMessage('decimal');
+    alertErrorMessage('decimal');
   }
   isDecimal = true;
 });
@@ -144,7 +139,7 @@ equal.addEventListener('click', function (e) {
     secondOperhand = undefined;
     operator = undefined;
   } else {
-    errorMessage('=');
+    alertErrorMessage('=');
   }
 
   if (isDecimal) {
@@ -165,9 +160,3 @@ document.querySelectorAll('.number').forEach(number => {
     restartOperatorsBtnStyle();
   });
 });
-
-// function sum(a, b) {
-//   return a + b;
-// }
-
-// module.exports = { performCalculation };
