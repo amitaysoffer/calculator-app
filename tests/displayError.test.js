@@ -5,7 +5,6 @@ test('display error', () => {
 });
 
 test('Properly add error message', () => {
-  expect(createErrorMessage('+')).toBe(
-    `You must enter a number before you enter '+'`
-  );
+  const message = createErrorMessage('+');
+  expect(message).toBe(`You must enter a number before you enter '+'`);
 });
